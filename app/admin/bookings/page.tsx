@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Search, Calendar, Mail, Phone, FileText } from 'lucide-react';
+import { Search, Calendar, Mail, Phone, FileText, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Booking {
   id: string;
@@ -19,13 +19,29 @@ interface Booking {
 }
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const statuses = ['pending', 'confirmed', 'completed'];
+const statusFlow = { pending: 'confirmed', confirmed: 'completed', completed: 'completed' };
+
+function StatusPill({ status }: { status: string }) {
+  const tones: Record<string, string> = {
+    pending: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
+    confirmed: 'bg-green-50 text-green-700 border border-green-200',
+    completed: 'bg-blue-50 text-blue-700 border border-blue-200',
+    cancelled: 'bg-red-50 text-red-700 border border-red-200',
+  };
+  return (
+    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${tones[status] || tones.pending}`}>
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  );
+}
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filteredBookings, setFilteredBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   useEffect(() => {
@@ -35,6 +51,9 @@ export default function BookingsPage() {
         if (response.ok) {
           const data = await response.json();
           setBookings(data.data || []);
+          if ((data.data || []).length > 0) {
+            setSelectedBooking((data.data || [])[0]);
+          }
         }
       } catch (error) {
         console.error('Failed to fetch bookings:', error);
@@ -53,7 +72,8 @@ export default function BookingsPage() {
       filtered = filtered.filter(
         b =>
           b.name.toLowerCase().includes(search.toLowerCase()) ||
-          b.email.toLowerCase().includes(search.toLowerCase())
+          b.email.toLowerCase().includes(search.toLowerCase()) ||
+          b.shoot_type.toLowerCase().includes(search.toLowerCase())
       );
     }
 
@@ -73,7 +93,8 @@ export default function BookingsPage() {
       });
 
       if (response.ok) {
-        setBookings(bookings.map(b => (b.id === bookingId ? { ...b, status: newStatus } : b)));
+        const updated = bookings.map(b => (b.id === bookingId ? { ...b, status: newStatus } : b));
+        setBookings(updated);
         if (selectedBooking?.id === bookingId) {
           setSelectedBooking({ ...selectedBooking, status: newStatus });
         }
@@ -83,83 +104,94 @@ export default function BookingsPage() {
     }
   };
 
+  const advanceStatus = async (bookingId: string, currentStatus: string) => {
+    const nextStatus = statusFlow[currentStatus as keyof typeof statusFlow] || currentStatus;
+    if (nextStatus !== currentStatus) {
+      await handleStatusChange(bookingId, nextStatus);
+    }
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-4xl font-bold text-black mb-2">Bookings</h1>
-        <p className="text-gray-600">Manage all photography bookings</p>
-      </div>
-
-      {/* Search and Filter */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="flex-1 relative">
-          <Search className="absolute left-4 top-3 w-5 h-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search by name or email..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
-          />
+    <div className="space-y-5">
+      {/* Header & Search */}
+      <div className="space-y-4">
+        <div>
+          <h1 className="text-[32px] font-semibold text-black">Bookings</h1>
+          <p className="mt-1 text-gray-600">Every shoot from inquiry to delivery</p>
         </div>
-        <select
-          value={statusFilter}
-          onChange={e => setStatusFilter(e.target.value)}
-          className="px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
-        >
-          <option value="all">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="confirmed">Confirmed</option>
-          <option value="completed">Completed</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex-1 relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search by name, email, or shoot type..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="w-full pl-11 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setStatusFilter('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+              statusFilter === 'all'
+                ? 'bg-black text-white'
+                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            All Status
+          </button>
+          {statuses.map(status => (
+            <button
+              key={status}
+              onClick={() => setStatusFilter(status)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+                statusFilter === status
+                  ? 'bg-black text-white'
+                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Bookings List */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Bookings Table */}
-        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-black mb-6">
-            {filteredBookings.length} Booking{filteredBookings.length !== 1 ? 's' : ''}
-          </h2>
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        {/* Bookings List */}
+        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-black">{filteredBookings.length} Booking{filteredBookings.length !== 1 ? 's' : ''}</h2>
+          </div>
 
           {loading ? (
-            <div className="text-center py-8 text-gray-500">Loading...</div>
+            <div className="p-8 text-center text-gray-500">Loading...</div>
           ) : filteredBookings.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">No bookings found</div>
+            <div className="p-8 text-center text-gray-500">No bookings found</div>
           ) : (
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <div className="divide-y divide-gray-200 max-h-[600px] overflow-y-auto">
               {filteredBookings.map(booking => (
                 <button
                   key={booking.id}
                   onClick={() => setSelectedBooking(booking)}
-                  className={`w-full p-4 rounded-lg text-left transition border ${
+                  className={`w-full p-4 text-left transition ${
                     selectedBooking?.id === booking.id
-                      ? 'bg-lime-100 border-lime-400'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                      ? 'bg-lime-50 border-l-2 border-l-lime-400'
+                      : 'hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <p className="text-gray-900 font-semibold">{booking.name}</p>
-                      <p className="text-gray-600 text-sm">{booking.email}</p>
-                      <p className="text-gray-500 text-xs mt-1">
-                        {new Date(booking.preferred_date).toLocaleDateString()}
-                      </p>
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-black truncate">{booking.name}</p>
+                      <p className="text-sm text-gray-600 truncate">{booking.email}</p>
                     </div>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ml-2 ${
-                        booking.status === 'confirmed'
-                          ? 'bg-green-100 text-green-700'
-                          : booking.status === 'completed'
-                          ? 'bg-blue-100 text-blue-700'
-                          : 'bg-yellow-100 text-yellow-700'
-                      }`}
-                    >
-                      {booking.status}
-                    </span>
+                    <StatusPill status={booking.status} />
                   </div>
+                  <p className="text-xs text-gray-500">{new Date(booking.preferred_date).toLocaleDateString()}</p>
                 </button>
               ))}
             </div>
@@ -168,80 +200,83 @@ export default function BookingsPage() {
 
         {/* Booking Details */}
         {selectedBooking && (
-          <div className="bg-white border border-gray-200 rounded-xl p-6 h-fit shadow-sm">
-            <h2 className="text-xl font-bold text-black mb-6">Details</h2>
-
-            <div className="space-y-4 text-sm">
-              <div>
-                <p className="text-gray-600 mb-1 font-medium">Name</p>
-                <p className="text-gray-900 font-semibold">{selectedBooking.name}</p>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
-                  <Mail className="w-4 h-4" /> Email
-                </p>
-                <a href={`mailto:${selectedBooking.email}`} className="text-lime-600 hover:text-lime-700 font-medium">
-                  {selectedBooking.email}
-                </a>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
-                  <Phone className="w-4 h-4" /> Phone
-                </p>
-                <p className="text-gray-900">{selectedBooking.phone}</p>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
-                  <Calendar className="w-4 h-4" /> Date & Time
-                </p>
-                <p className="text-gray-900">
-                  {new Date(selectedBooking.preferred_date).toLocaleDateString()} at{' '}
-                  {selectedBooking.preferred_time}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 font-medium">Package</p>
-                <p className="text-gray-900 capitalize">{selectedBooking.package_type}</p>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 font-medium">Shoot Type</p>
-                <p className="text-gray-900 capitalize">{selectedBooking.shoot_type}</p>
-              </div>
-
-              <div>
-                <p className="text-gray-600 mb-1 font-medium">Location</p>
-                <p className="text-gray-900">{selectedBooking.location}</p>
-              </div>
-
-              {selectedBooking.special_requests && (
+          <div className="lg:col-span-7 space-y-5">
+            {/* Main Detail Card */}
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+              <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
-                  <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
-                    <FileText className="w-4 h-4" /> Special Requests
-                  </p>
-                  <p className="text-gray-900 text-sm">{selectedBooking.special_requests}</p>
+                  <p className="text-sm text-gray-600 mb-1">{selectedBooking.id}</p>
+                  <h2 className="text-3xl font-bold text-black">{selectedBooking.name}</h2>
+                  <p className="mt-2 text-gray-700">{selectedBooking.shoot_type} • {selectedBooking.package_type}</p>
                 </div>
-              )}
-
-              <div className="pt-4 border-t border-gray-200">
-                <p className="text-gray-600 mb-3 font-medium">Status</p>
-                <select
-                  value={selectedBooking.status}
-                  onChange={e => handleStatusChange(selectedBooking.id, e.target.value)}
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400 text-sm"
-                >
-                  <option value="pending">Pending</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="completed">Completed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
+                <StatusPill status={selectedBooking.status} />
               </div>
 
-              <p className="text-gray-500 text-xs pt-4">
+              <div className="space-y-5 text-sm">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-4 h-4 text-gray-600 mt-1" />
+                  <div>
+                    <p className="text-gray-600 font-medium">Date & Time</p>
+                    <p className="text-black">{new Date(selectedBooking.preferred_date).toLocaleDateString()} • {selectedBooking.preferred_time}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-gray-600 mt-1" />
+                  <div>
+                    <p className="text-gray-600 font-medium">Phone</p>
+                    <p className="text-black">{selectedBooking.phone}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-gray-600 mt-1" />
+                  <div>
+                    <p className="text-gray-600 font-medium">Email</p>
+                    <a href={`mailto:${selectedBooking.email}`} className="text-lime-600 hover:text-lime-700 font-medium">
+                      {selectedBooking.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <FileText className="w-4 h-4 text-gray-600 mt-1" />
+                  <div>
+                    <p className="text-gray-600 font-medium">Location</p>
+                    <p className="text-black">{selectedBooking.location}</p>
+                  </div>
+                </div>
+
+                {selectedBooking.special_requests && (
+                  <div className="pt-3 border-t border-gray-200">
+                    <p className="text-gray-600 font-medium mb-2">Special Requests</p>
+                    <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">{selectedBooking.special_requests}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Action Card */}
+            <div className="bg-black text-white rounded-2xl p-8">
+              <p className="text-sm text-white/70 mb-2">Current Status</p>
+              <p className="text-2xl font-bold mb-6">{selectedBooking.status.charAt(0).toUpperCase() + selectedBooking.status.slice(1)}</p>
+
+              <button
+                onClick={() => advanceStatus(selectedBooking.id, selectedBooking.status)}
+                disabled={selectedBooking.status === 'completed'}
+                className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                  selectedBooking.status === 'completed'
+                    ? 'bg-white/20 text-white/50 cursor-not-allowed'
+                    : 'bg-lime-400 text-black hover:bg-lime-300'
+                }`}
+              >
+                <ArrowRight className="w-4 h-4" />
+                {selectedBooking.status === 'completed'
+                  ? 'Booking Complete'
+                  : `Move to ${statusFlow[selectedBooking.status as keyof typeof statusFlow]?.charAt(0).toUpperCase() + statusFlow[selectedBooking.status as keyof typeof statusFlow]?.slice(1)}`}
+              </button>
+
+              <p className="text-xs text-white/60 mt-4">
                 Booked on {new Date(selectedBooking.created_at).toLocaleDateString()}
               </p>
             </div>

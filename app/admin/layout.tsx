@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { LogOut, BarChart3, BookOpen, FileText, Settings } from 'lucide-react';
+import { LogOut, BarChart3, BookOpen, FileText, Settings, Inbox, Image, Wallet, Sparkles } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -43,7 +43,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const navItems = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: BarChart3 },
+    { href: '/admin/inquiries', label: 'Inquiries', icon: Inbox },
     { href: '/admin/bookings', label: 'Bookings', icon: BookOpen },
+    { href: '/admin/deliverables', label: 'Deliverables', icon: Image },
+    { href: '/admin/portfolio', label: 'Portfolio', icon: Sparkles },
+    { href: '/admin/financials', label: 'Financials', icon: Wallet },
     { href: '/admin/documents', label: 'Documents', icon: FileText },
     { href: '/admin/settings', label: 'Settings', icon: Settings },
   ];
