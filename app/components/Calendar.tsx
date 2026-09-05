@@ -116,7 +116,7 @@ export default function Calendar({ bookedDates, selectedDate, onSelectDate }: Ca
             <button
               key={dateStr}
               onClick={() => isAvailable && onSelectDate(dateStr)}
-              disabled={!isAvailable}
+              disabled={!isAvailable || false}
               className={`h-10 rounded-lg font-medium text-sm transition ${
                 isSelected
                   ? 'bg-gray-900 text-white'
