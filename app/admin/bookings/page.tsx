@@ -87,26 +87,26 @@ export default function BookingsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Bookings</h1>
-        <p className="text-gray-400">Manage all photography bookings</p>
+        <h1 className="text-4xl font-bold text-black mb-2">Bookings</h1>
+        <p className="text-gray-600">Manage all photography bookings</p>
       </div>
 
       {/* Search and Filter */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-4 top-3 w-5 h-5 text-gray-500" />
+          <Search className="absolute left-4 top-3 w-5 h-5 text-gray-400" />
           <input
             type="text"
             placeholder="Search by name or email..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full pl-12 pr-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
         <select
           value={statusFilter}
           onChange={e => setStatusFilter(e.target.value)}
-          className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+          className="px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
         >
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
@@ -119,15 +119,15 @@ export default function BookingsPage() {
       {/* Bookings List */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Bookings Table */}
-        <div className="lg:col-span-2 bg-gray-950 border border-gray-800 rounded-xl p-6">
-          <h2 className="text-xl font-bold text-white mb-6">
+        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-black mb-6">
             {filteredBookings.length} Booking{filteredBookings.length !== 1 ? 's' : ''}
           </h2>
 
           {loading ? (
-            <div className="text-center py-8 text-gray-400">Loading...</div>
+            <div className="text-center py-8 text-gray-500">Loading...</div>
           ) : filteredBookings.length === 0 ? (
-            <div className="text-center py-8 text-gray-400">No bookings found</div>
+            <div className="text-center py-8 text-gray-500">No bookings found</div>
           ) : (
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {filteredBookings.map(booking => (
@@ -136,25 +136,25 @@ export default function BookingsPage() {
                   onClick={() => setSelectedBooking(booking)}
                   className={`w-full p-4 rounded-lg text-left transition border ${
                     selectedBooking?.id === booking.id
-                      ? 'bg-lime-400/10 border-lime-400'
-                      : 'bg-gray-900 border-gray-700 hover:bg-gray-800/50'
+                      ? 'bg-lime-100 border-lime-400'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <p className="text-white font-medium">{booking.name}</p>
-                      <p className="text-gray-400 text-sm">{booking.email}</p>
+                      <p className="text-gray-900 font-semibold">{booking.name}</p>
+                      <p className="text-gray-600 text-sm">{booking.email}</p>
                       <p className="text-gray-500 text-xs mt-1">
                         {new Date(booking.preferred_date).toLocaleDateString()}
                       </p>
                     </div>
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ml-2 ${
+                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ml-2 ${
                         booking.status === 'confirmed'
-                          ? 'bg-green-900/30 text-green-400'
+                          ? 'bg-green-100 text-green-700'
                           : booking.status === 'completed'
-                          ? 'bg-blue-900/30 text-blue-400'
-                          : 'bg-yellow-900/30 text-yellow-400'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'bg-yellow-100 text-yellow-700'
                       }`}
                     >
                       {booking.status}
@@ -168,71 +168,71 @@ export default function BookingsPage() {
 
         {/* Booking Details */}
         {selectedBooking && (
-          <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 h-fit">
-            <h2 className="text-xl font-bold text-white mb-6">Details</h2>
+          <div className="bg-white border border-gray-200 rounded-xl p-6 h-fit shadow-sm">
+            <h2 className="text-xl font-bold text-black mb-6">Details</h2>
 
             <div className="space-y-4 text-sm">
               <div>
-                <p className="text-gray-400 mb-1">Name</p>
-                <p className="text-white font-medium">{selectedBooking.name}</p>
+                <p className="text-gray-600 mb-1 font-medium">Name</p>
+                <p className="text-gray-900 font-semibold">{selectedBooking.name}</p>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1 flex items-center gap-2">
+                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
                   <Mail className="w-4 h-4" /> Email
                 </p>
-                <a href={`mailto:${selectedBooking.email}`} className="text-lime-400 hover:text-lime-300">
+                <a href={`mailto:${selectedBooking.email}`} className="text-lime-600 hover:text-lime-700 font-medium">
                   {selectedBooking.email}
                 </a>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1 flex items-center gap-2">
+                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
                   <Phone className="w-4 h-4" /> Phone
                 </p>
-                <p className="text-white">{selectedBooking.phone}</p>
+                <p className="text-gray-900">{selectedBooking.phone}</p>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1 flex items-center gap-2">
+                <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
                   <Calendar className="w-4 h-4" /> Date & Time
                 </p>
-                <p className="text-white">
+                <p className="text-gray-900">
                   {new Date(selectedBooking.preferred_date).toLocaleDateString()} at{' '}
                   {selectedBooking.preferred_time}
                 </p>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1">Package</p>
-                <p className="text-white capitalize">{selectedBooking.package_type}</p>
+                <p className="text-gray-600 mb-1 font-medium">Package</p>
+                <p className="text-gray-900 capitalize">{selectedBooking.package_type}</p>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1">Shoot Type</p>
-                <p className="text-white capitalize">{selectedBooking.shoot_type}</p>
+                <p className="text-gray-600 mb-1 font-medium">Shoot Type</p>
+                <p className="text-gray-900 capitalize">{selectedBooking.shoot_type}</p>
               </div>
 
               <div>
-                <p className="text-gray-400 mb-1">Location</p>
-                <p className="text-white">{selectedBooking.location}</p>
+                <p className="text-gray-600 mb-1 font-medium">Location</p>
+                <p className="text-gray-900">{selectedBooking.location}</p>
               </div>
 
               {selectedBooking.special_requests && (
                 <div>
-                  <p className="text-gray-400 mb-1 flex items-center gap-2">
+                  <p className="text-gray-600 mb-1 flex items-center gap-2 font-medium">
                     <FileText className="w-4 h-4" /> Special Requests
                   </p>
-                  <p className="text-white text-sm">{selectedBooking.special_requests}</p>
+                  <p className="text-gray-900 text-sm">{selectedBooking.special_requests}</p>
                 </div>
               )}
 
-              <div className="pt-4 border-t border-gray-700">
-                <p className="text-gray-400 mb-3">Status</p>
+              <div className="pt-4 border-t border-gray-200">
+                <p className="text-gray-600 mb-3 font-medium">Status</p>
                 <select
                   value={selectedBooking.status}
                   onChange={e => handleStatusChange(selectedBooking.id, e.target.value)}
-                  className="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400 text-sm"
+                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400 text-sm"
                 >
                   <option value="pending">Pending</option>
                   <option value="confirmed">Confirmed</option>

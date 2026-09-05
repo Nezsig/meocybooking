@@ -22,7 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lime-400"></div>
       </div>
     );
@@ -49,12 +49,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 w-64 h-screen bg-gray-950 border-r border-gray-800 p-6 flex flex-col">
+      <div className="fixed left-0 top-0 w-64 h-screen bg-white border-r border-gray-200 p-6 flex flex-col">
         <div className="mb-12">
-          <h1 className="text-2xl font-bold">MEOCY</h1>
-          <p className="text-gray-400 text-sm">Admin Panel</p>
+          <h1 className="text-2xl font-bold text-black">MEOCY</h1>
+          <p className="text-gray-500 text-sm">Admin Dashboard</p>
         </div>
 
         <nav className="space-y-2 flex-1">
@@ -68,7 +68,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
                   isActive
                     ? 'bg-lime-400 text-black font-semibold'
-                    : 'text-gray-400 hover:bg-gray-800'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -80,7 +80,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:bg-red-900/20 transition"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 transition"
         >
           <LogOut className="w-5 h-5" />
           <span>Logout</span>

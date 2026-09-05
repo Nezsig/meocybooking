@@ -39,69 +39,69 @@ export default function SettingsPage() {
     <div className="space-y-6 max-w-2xl">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Settings</h1>
-        <p className="text-gray-400">Manage admin panel and studio information</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Settings</h1>
+        <p className="text-gray-600">Manage admin panel and studio information</p>
       </div>
 
       {/* Success Message */}
       {saved && (
-        <div className="bg-green-900/20 border border-green-700/50 rounded-xl p-4 text-sm text-green-300">
+        <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-700">
           ✓ Settings saved successfully
         </div>
       )}
 
       {/* Studio Information */}
-      <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 space-y-6">
-        <h2 className="text-xl font-bold text-white">Studio Information</h2>
+      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
+        <h2 className="text-xl font-bold text-gray-900">Studio Information</h2>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Studio Name</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Studio Name</label>
           <input
             type="text"
             name="studioName"
             value={settings.studioName}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
           <input
             type="email"
             name="studioEmail"
             value={settings.studioEmail}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
           <input
             type="tel"
             name="studioPhone"
             value={settings.studioPhone}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Location</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
           <input
             type="text"
             name="studioLocation"
             value={settings.studioLocation}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
       </div>
 
       {/* Booking Settings */}
-      <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 space-y-6">
-        <h2 className="text-xl font-bold text-white">Booking Settings</h2>
+      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
+        <h2 className="text-xl font-bold text-gray-900">Booking Settings</h2>
 
         <label className="flex items-center gap-3 cursor-pointer">
           <input
@@ -111,7 +111,7 @@ export default function SettingsPage() {
             onChange={handleChange}
             className="w-5 h-5 rounded"
           />
-          <span className="text-gray-300">Email notifications for new bookings</span>
+          <span className="text-gray-700">Email notifications for new bookings</span>
         </label>
 
         <label className="flex items-center gap-3 cursor-pointer">
@@ -122,11 +122,11 @@ export default function SettingsPage() {
             onChange={handleChange}
             className="w-5 h-5 rounded"
           />
-          <span className="text-gray-300">Auto-confirm bookings</span>
+          <span className="text-gray-700">Auto-confirm bookings</span>
         </label>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Max daily bookings</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Max daily bookings</label>
           <input
             type="number"
             name="maxDailyBookings"
@@ -134,19 +134,19 @@ export default function SettingsPage() {
             onChange={handleChange}
             min="1"
             max="20"
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
           />
         </div>
       </div>
 
       {/* Security */}
-      <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 space-y-6">
-        <h2 className="text-xl font-bold text-white">Security</h2>
+      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
+        <h2 className="text-xl font-bold text-gray-900">Security</h2>
 
         {!showPasswordChange ? (
           <button
             onClick={() => setShowPasswordChange(true)}
-            className="w-full px-4 py-2 text-left text-red-400 hover:bg-red-900/20 rounded-lg transition border border-red-700/30"
+            className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-900/20 rounded-lg transition border border-red-700/30"
           >
             Change Admin Password
           </button>
@@ -157,7 +157,7 @@ export default function SettingsPage() {
               placeholder="New password"
               value={adminPassword}
               onChange={e => setAdminPassword(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-lime-400"
+              className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
             <div className="flex gap-3">
               <button
@@ -175,7 +175,7 @@ export default function SettingsPage() {
                   setShowPasswordChange(false);
                   setAdminPassword('');
                 }}
-                className="flex-1 px-4 py-2 bg-gray-800 text-gray-300 font-medium rounded-lg hover:bg-gray-700 transition"
+                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-700 transition"
               >
                 Cancel
               </button>
@@ -183,7 +183,7 @@ export default function SettingsPage() {
           </div>
         )}
 
-        <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-3 text-sm text-blue-300">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-700">
           <AlertCircle className="w-4 h-4 inline mr-2" />
           Keep your password secure. Never share it with others.
         </div>

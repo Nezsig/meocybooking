@@ -70,8 +70,8 @@ export default function DocumentsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Documents</h1>
-        <p className="text-gray-400">Upload and manage booking documents</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Documents</h1>
+        <p className="text-gray-600">Upload and manage booking documents</p>
       </div>
 
       {/* Upload Section */}
@@ -86,47 +86,47 @@ export default function DocumentsPage() {
         />
         <label htmlFor="file-upload" className="cursor-pointer block">
           <Upload className="w-12 h-12 text-lime-400 mx-auto mb-3" />
-          <p className="text-white font-medium mb-1">
+          <p className="text-gray-900 font-medium mb-1">
             {uploading ? 'Uploading...' : 'Drop files here or click to upload'}
           </p>
-          <p className="text-gray-400 text-sm">PDF, images, documents up to 50MB</p>
+          <p className="text-gray-600 text-sm">PDF, images, documents up to 50MB</p>
         </label>
       </div>
 
       {/* Documents List */}
-      <div className="bg-gray-950 border border-gray-800 rounded-xl p-6">
-        <h2 className="text-xl font-bold text-white mb-6">
+      <div className="bg-white border border-gray-200 rounded-xl p-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-6">
           {documents.length} Document{documents.length !== 1 ? 's' : ''}
         </h2>
 
         {documents.length === 0 ? (
-          <div className="text-center py-8 text-gray-400">No documents yet</div>
+          <div className="text-center py-8 text-gray-600">No documents yet</div>
         ) : (
           <div className="space-y-3 max-h-96 overflow-y-auto">
             {documents.map(doc => (
               <div
                 key={doc.id}
-                className="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-800 hover:border-gray-700 transition"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition"
               >
                 <div className="flex items-center gap-4 flex-1">
                   <div className="w-10 h-10 bg-lime-400/10 rounded-lg flex items-center justify-center">
                     <FileText className="w-5 h-5 text-lime-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-white font-medium">{doc.name}</p>
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-gray-900 font-medium">{doc.name}</p>
+                    <p className="text-gray-700 text-sm">
                       {formatFileSize(doc.size)} • {doc.uploadedAt}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-gray-800 rounded-lg transition text-gray-400 hover:text-gray-300">
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition text-gray-600 hover:text-gray-400">
                     <Download className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => handleDelete(doc.id)}
-                    className="p-2 hover:bg-red-900/20 rounded-lg transition text-gray-400 hover:text-red-400"
+                    className="p-2 hover:bg-red-900/20 rounded-lg transition text-gray-600 hover:text-red-600"
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -138,7 +138,7 @@ export default function DocumentsPage() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4 text-sm text-blue-300">
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-700">
         💡 <strong>Tip:</strong> Upload contracts, invoices, delivery notes, and other booking-related documents
         here for easy access.
       </div>
