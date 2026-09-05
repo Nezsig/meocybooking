@@ -1,69 +1,105 @@
-import Image from "next/image";
+import BookingFormAppleStyle from './components/BookingFormAppleStyle';
+
+export const metadata = {
+  title: 'MEOCY — Photography Studio, Milan',
+  description: 'Professional photography studio in Milan. Product, fashion, restaurant and model photography.',
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
+              <span className="text-white text-sm font-bold">M</span>
+            </div>
+            <span className="font-semibold text-gray-900">MEOCY Studio</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-sm text-gray-600">
+            <a href="#about" className="hover:text-gray-900">About</a>
+            <a href="#packages" className="hover:text-gray-900">Packages</a>
+            <a href="#booking" className="hover:text-gray-900">Booking</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+            Photography That Sells
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Professional product, fashion, restaurant and model photography — shot in our Milan studio or on location.
+          </p>
+          <a
+            href="#booking"
+            className="inline-block px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition"
+          >
+            Book a Shoot
+          </a>
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-8">About MEOCY</h2>
+          <p className="text-lg text-gray-700 leading-8">
+            We are not just content creators — we operate a professional studio in Milan with comprehensive equipment and expertise. Whether you run a clothing brand, sell physical products, own a restaurant, or need a model shoot, you can send your items to our studio for controlled, branded photography — or we come to you: your shop, your restaurant, outdoor locations, anywhere your brand needs the best visual content, created professionally.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Packages */}
+      <section id="packages" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Packages & Pricing</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { name: 'Basic', price: '€200', features: ['Studio shoots', '15 photos', 'Raw & edited'] },
+              { name: 'Silver', price: '€400', features: ['4 hours on-location', '40 photos', '1 video'] },
+              { name: 'Gold', price: '€750', features: ['6 hours', '2 locations', '75 photos'], featured: true },
+              { name: 'Platinum', price: '€1000', features: ['8 hours', '100 photos', '10 videos'] },
+            ].map(pkg => (
+              <div
+                key={pkg.name}
+                className={`p-6 rounded-lg border ${
+                  pkg.featured
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-200 bg-white'
+                }`}
+              >
+                <h3 className="text-lg font-semibold mb-2">{pkg.name}</h3>
+                <p className={`text-2xl font-bold mb-4 ${pkg.featured ? '' : 'text-gray-900'}`}>{pkg.price}</p>
+                <ul className="space-y-2 text-sm">
+                  {pkg.features.map(feature => (
+                    <li key={feature}>✓ {feature}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Booking Form */}
+      <section id="booking" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Book Your Shoot</h2>
+          <BookingFormAppleStyle />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
+          <p>© {new Date().getFullYear()} MEOCY Studio. All rights reserved.</p>
+          <p className="mt-2">hello@meocy.com | Milan, Italy</p>
+        </div>
+      </footer>
     </div>
   );
 }
