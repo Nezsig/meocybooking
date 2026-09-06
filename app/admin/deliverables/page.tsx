@@ -146,12 +146,12 @@ export default function DeliverablesPage() {
       {/* Featured Gallery */}
       {lead && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <div className="lg:col-span-5 bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 h-64 lg:h-auto">
+          <div className="lg:col-span-5 bg-white rounded-2xl overflow-hidden border border-gray-200 h-64 lg:h-auto">
             <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
               <Play className="w-12 h-12 text-white/30" />
             </div>
           </div>
-          <div className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm flex flex-col">
+          <div className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-8 flex flex-col">
             <div className="flex items-start justify-between gap-4 mb-6">
               <div>
                 <p className="text-sm text-gray-600 mb-2">
@@ -207,7 +207,7 @@ export default function DeliverablesPage() {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {rest.map(d => (
-          <div key={d.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div key={d.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden  transition">
             <div className="w-full h-40 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
               <Play className="w-10 h-10 text-white/20" />
             </div>
@@ -245,7 +245,7 @@ export default function DeliverablesPage() {
       </div>
 
       {visible.length === 0 && (
-        <div className="bg-white border border-gray-200 rounded-2xl p-16 text-center shadow-sm">
+        <div className="bg-white border border-gray-200 rounded-2xl p-16 text-center">
           <Upload className="w-12 h-12 mx-auto text-gray-300 mb-4" />
           <p className="text-lg font-semibold text-gray-700 mb-1">No deliverables yet</p>
           <p className="text-gray-600">Galleries appear once a shoot moves into post-production</p>

@@ -163,7 +163,7 @@ export default function BookingsPage() {
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Bookings List */}
-        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-2xl overflow-hidden">
           <div className="px-6 py-5 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-black">{filteredBookings.length} Booking{filteredBookings.length !== 1 ? 's' : ''}</h2>
           </div>
@@ -202,7 +202,7 @@ export default function BookingsPage() {
         {selectedBooking && (
           <div className="lg:col-span-7 space-y-5">
             {/* Main Detail Card */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+            <div className="bg-white border border-gray-200 rounded-2xl p-8">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">{selectedBooking.id}</p>

@@ -51,7 +51,7 @@ export default function SettingsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Studio Profile */}
-        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm space-y-6">
+        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-8 space-y-6">
           <div>
             <h2 className="text-lg font-semibold text-black mb-6">Studio Profile</h2>
             <p className="text-sm text-gray-600 mb-6">Shown on contracts, invoices and client galleries</p>
@@ -130,7 +130,7 @@ export default function SettingsPage() {
         {/* Languages & Rules */}
         <div className="space-y-5">
           {/* Languages */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <h3 className="text-lg font-semibold text-black mb-4">Languages</h3>
             <p className="text-sm text-gray-600 mb-4">Content coverage across the public site</p>
 
@@ -157,7 +157,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Booking Rules */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <h3 className="text-lg font-semibold text-black mb-4">Booking Rules</h3>
 
             <div className="space-y-4 text-sm">
@@ -201,7 +201,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Security Section */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+      <div className="bg-white border border-gray-200 rounded-2xl p-8">
         <h2 className="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <Lock className="w-5 h-5" />
           Security

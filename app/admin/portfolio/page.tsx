@@ -112,7 +112,7 @@ export default function PortfolioPage() {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {visible.map(item => (
-          <div key={item.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div key={item.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden  transition">
             {/* Cover */}
             <div className="relative w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
               {item.featured && (

@@ -38,7 +38,7 @@ export default function AdminLogin() {
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleLogin} className="bg-white border border-gray-200 rounded-2xl p-8 space-y-6 shadow-sm">
+        <form onSubmit={handleLogin} className="bg-white border border-gray-200 rounded-2xl p-8 space-y-6">
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-3">
               Admin Password

@@ -121,7 +121,7 @@ export default function DocumentsPage() {
       </div>
 
       {/* Documents Table */}
-      <div className="col-span-12 lg:col-span-8 bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div className="col-span-12 lg:col-span-8 bg-white border border-gray-200 rounded-2xl overflow-hidden">
         <div className="px-8 py-5 border-b border-gray-200 flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-lg font-semibold text-black">Studio Library</h2>
           <div className="flex flex-wrap gap-2">
