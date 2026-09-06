@@ -73,28 +73,28 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* Greeting Header */}
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex items-end justify-between gap-6 mb-10">
         <div>
-          <h1 className="text-4xl font-bold text-black">Good morning, MEOCY</h1>
-          <p className="text-gray-600 mt-1">Saturday, 5 September · 3 shoots this week</p>
+          <h1 className="text-5xl font-bold text-gray-900 tracking-tight">Good morning, MEOCY</h1>
+          <p className="text-gray-600 mt-2 text-base">Saturday, 5 September · 3 shoots this week</p>
         </div>
-        <button className="px-5 py-2.5 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition">
+        <button className="px-6 py-3 bg-gradient-to-r from-lime-400 to-lime-300 text-gray-900 font-semibold rounded-xl hover:shadow-lg hover:shadow-lime-400/25 shadow-md shadow-lime-400/15 transition-all duration-200 hover:scale-105">
           + New booking
         </button>
       </div>
 
       {/* Revenue Chart - Main Feature */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-        <div className="flex items-start justify-between mb-8">
+      <div className="bg-white border border-gray-200/60 rounded-[32px] p-8 shadow-sm hover:shadow-lg transition-all duration-300" style={{boxShadow: '0 4px 20px rgba(0,0,0,0.08)'}}>
+        <div className="flex items-start justify-between mb-10">
           <div>
-            <p className="text-gray-600 text-sm font-medium">Revenue booked · September</p>
-            <h2 className="text-6xl font-bold text-black mt-3">€{(stats.revenue / 1000).toFixed(1)}K</h2>
-            <div className="flex items-center gap-2 mt-4">
-              <span className="inline-flex items-center gap-1.5 bg-lime-400 text-black px-3 py-1.5 rounded-full text-sm font-semibold">
+            <p className="text-gray-500 text-xs font-semibold tracking-wider uppercase">Revenue booked · September</p>
+            <h2 className="text-7xl font-bold text-gray-900 mt-4 tracking-tight">€{(stats.revenue / 1000).toFixed(1)}K</h2>
+            <div className="flex items-center gap-2 mt-6">
+              <span className="inline-flex items-center gap-2 bg-lime-50 text-lime-700 px-4 py-2 rounded-full text-sm font-semibold border border-lime-200/50">
                 <ArrowUpRight className="w-4 h-4" />
                 13.9%
               </span>
-              <span className="text-gray-600 text-sm">vs. August</span>
+              <span className="text-gray-500 text-sm">vs. August</span>
             </div>
           </div>
 
@@ -143,10 +143,10 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Next Booking - Featured Card */}
         {nextBooking && (
-          <div className="lg:col-span-1 bg-black text-white rounded-2xl p-8 flex flex-col shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-            <p className="text-white/60 text-sm font-medium">Next on the calendar</p>
-            <h3 className="text-2xl font-bold mt-4 mb-1">{nextBooking.name}</h3>
-            <p className="text-white/70 text-sm mb-6">{nextBooking.package_type}</p>
+          <div className="lg:col-span-1 bg-gradient-to-br from-gray-700/90 via-gray-600/85 to-gray-700/90 text-white rounded-[32px] p-8 flex flex-col shadow-lg border border-gray-500/20 backdrop-blur-md" style={{boxShadow: '0 8px 30px rgba(0,0,0,0.12)'}}>
+            <p className="text-white/40 text-xs font-semibold tracking-wider uppercase">Next on the calendar</p>
+            <h3 className="text-3xl font-bold mt-4 mb-2 tracking-tight">{nextBooking.name}</h3>
+            <p className="text-white/60 text-sm mb-8">{nextBooking.package_type}</p>
 
             <div className="space-y-3 text-sm mb-8 flex-1">
               <div className="flex items-center gap-2.5">
@@ -159,12 +159,12 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/10">
-              <p className="text-white/60 text-xs mb-2">Balance due</p>
-              <p className="text-2xl font-bold mb-4">€1,200</p>
+            <div className="pt-6 border-t border-white/10 mt-auto">
+              <p className="text-white/40 text-xs font-semibold tracking-wide mb-2 uppercase">Balance due</p>
+              <p className="text-3xl font-bold mb-6">€1,200</p>
               <a
                 href="/admin/bookings"
-                className="block w-full py-3 bg-lime-400 text-black font-semibold rounded-lg hover:bg-lime-300 transition text-center text-sm"
+                className="block w-full py-3 bg-gradient-to-r from-lime-400 to-lime-300 text-gray-900 font-semibold rounded-xl hover:shadow-lg hover:shadow-lime-400/20 shadow-md shadow-lime-400/15 transition-all duration-200 text-center text-sm"
               >
                 Open brief
               </a>
@@ -173,10 +173,10 @@ export default function Dashboard() {
         )}
 
         {/* Upcoming Bookings */}
-        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-black">Upcoming bookings</h2>
-            <a href="/admin/bookings" className="text-gray-600 hover:text-black text-sm font-medium">View all</a>
+        <div className="lg:col-span-2 bg-white border border-gray-200/60 rounded-[32px] p-8 shadow-sm hover:shadow-lg transition-all duration-300" style={{boxShadow: '0 4px 20px rgba(0,0,0,0.08)'}}>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-lg font-semibold text-gray-900">Upcoming bookings</h2>
+            <a href="/admin/bookings" className="text-gray-500 hover:text-gray-900 text-sm font-medium transition">View all</a>
           </div>
 
           {loading ? (
@@ -216,19 +216,19 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid - 4 Column */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Total Bookings', value: stats.total, icon: TrendingUp, color: 'bg-blue-50' },
-          { label: 'Pending', value: stats.pending, icon: Clock, color: 'bg-yellow-50' },
-          { label: 'Confirmed', value: stats.confirmed, icon: CheckCircle, color: 'bg-green-50' },
-          { label: 'Est. Revenue', value: `€${(stats.revenue / 1000).toFixed(1)}K`, icon: ArrowUpRight, color: 'bg-lime-50' },
+          { label: 'Total Bookings', value: stats.total, icon: TrendingUp, color: 'from-blue-50 to-blue-50/50', border: 'border-blue-100/50' },
+          { label: 'Pending', value: stats.pending, icon: Clock, color: 'from-yellow-50 to-yellow-50/50', border: 'border-yellow-100/50' },
+          { label: 'Confirmed', value: stats.confirmed, icon: CheckCircle, color: 'from-green-50 to-green-50/50', border: 'border-green-100/50' },
+          { label: 'Est. Revenue', value: `€${(stats.revenue / 1000).toFixed(1)}K`, icon: ArrowUpRight, color: 'from-lime-50 to-lime-50/50', border: 'border-lime-100/50' },
         ].map((card, idx) => {
           const Icon = card.icon;
           return (
-            <div key={idx} className={`${card.color} border border-gray-200 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]`}>
-              <Icon className="w-5 h-5 text-gray-700 mb-3" />
-              <p className="text-gray-600 text-xs font-medium mb-2">{card.label}</p>
-              <p className="text-2xl font-bold text-black">{card.value}</p>
+            <div key={idx} className={`bg-gradient-to-br ${card.color} border ${card.border} rounded-[24px] p-6 shadow-sm hover:shadow-md transition-all duration-200`} style={{boxShadow: '0 2px 12px rgba(0,0,0,0.06)'}}>
+              <Icon className="w-5 h-5 text-gray-700 mb-4" />
+              <p className="text-gray-600 text-xs font-semibold tracking-wide uppercase mb-3">{card.label}</p>
+              <p className="text-4xl font-bold text-gray-900 tracking-tight">{card.value}</p>
             </div>
           );
         })}
