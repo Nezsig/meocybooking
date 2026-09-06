@@ -43,19 +43,19 @@ export default function FinancialsPage() {
 
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-sm text-gray-600 mb-2">Collected This Quarter</p>
           <p className="text-4xl font-bold text-black">€{(collected / 1000).toFixed(1)}k</p>
           <p className="text-xs text-gray-600 mt-2">€{(pending / 1000).toFixed(1)}k pending</p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-sm text-gray-600 mb-2">This Month</p>
           <p className="text-4xl font-bold text-black">€{(revenueData[revenueData.length - 1].revenue / 1000).toFixed(1)}k</p>
           <p className="text-xs text-gray-600 mt-2">+{((revenueData[revenueData.length - 1].revenue - revenueData[revenueData.length - 2].revenue) / revenueData[revenueData.length - 2].revenue * 100).toFixed(1)}% vs last month</p>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <p className="text-sm text-gray-600 mb-2">Profit Margin</p>
           <p className="text-4xl font-bold text-black">68%</p>
           <p className="text-xs text-gray-600 mt-2">Average across all packages</p>
@@ -82,7 +82,7 @@ export default function FinancialsPage() {
         </div>
 
         {/* Revenue Mix */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <h3 className="text-lg font-semibold text-black mb-6">Revenue Mix</h3>
           <div className="space-y-4">
             {packages.map(pkg => (
@@ -104,7 +104,7 @@ export default function FinancialsPage() {
       </div>
 
       {/* Packages */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8">
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h2 className="text-lg font-semibold text-black mb-6">Packages</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {packages.map(pkg => {

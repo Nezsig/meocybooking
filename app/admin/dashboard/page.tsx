@@ -84,7 +84,7 @@ export default function Dashboard() {
       </div>
 
       {/* Revenue Chart - Main Feature */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8">
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <div className="flex items-start justify-between mb-8">
           <div>
             <p className="text-gray-600 text-sm font-medium">Revenue booked · September</p>
@@ -143,7 +143,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Next Booking - Featured Card */}
         {nextBooking && (
-          <div className="lg:col-span-1 bg-black text-white rounded-2xl p-8 flex flex-col">
+          <div className="lg:col-span-1 bg-black text-white rounded-2xl p-8 flex flex-col shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
             <p className="text-white/60 text-sm font-medium">Next on the calendar</p>
             <h3 className="text-2xl font-bold mt-4 mb-1">{nextBooking.name}</h3>
             <p className="text-white/70 text-sm mb-6">{nextBooking.package_type}</p>
@@ -173,7 +173,7 @@ export default function Dashboard() {
         )}
 
         {/* Upcoming Bookings */}
-        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-8">
+        <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold text-black">Upcoming bookings</h2>
             <a href="/admin/bookings" className="text-gray-600 hover:text-black text-sm font-medium">View all</a>
@@ -215,17 +215,17 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats Grid */}
+      {/* Stats Grid - 4 Column */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total Bookings', value: stats.total, icon: TrendingUp },
-          { label: 'Pending', value: stats.pending, icon: Clock },
-          { label: 'Confirmed', value: stats.confirmed, icon: CheckCircle },
-          { label: 'Est. Revenue', value: `€${(stats.revenue / 1000).toFixed(1)}K`, icon: ArrowUpRight },
+          { label: 'Total Bookings', value: stats.total, icon: TrendingUp, color: 'bg-blue-50' },
+          { label: 'Pending', value: stats.pending, icon: Clock, color: 'bg-yellow-50' },
+          { label: 'Confirmed', value: stats.confirmed, icon: CheckCircle, color: 'bg-green-50' },
+          { label: 'Est. Revenue', value: `€${(stats.revenue / 1000).toFixed(1)}K`, icon: ArrowUpRight, color: 'bg-lime-50' },
         ].map((card, idx) => {
           const Icon = card.icon;
           return (
-            <div key={idx} className="bg-white border border-gray-200 rounded-xl p-5">
+            <div key={idx} className={`${card.color} border border-gray-200 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]`}>
               <Icon className="w-5 h-5 text-gray-700 mb-3" />
               <p className="text-gray-600 text-xs font-medium mb-2">{card.label}</p>
               <p className="text-2xl font-bold text-black">{card.value}</p>

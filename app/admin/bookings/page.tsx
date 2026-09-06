@@ -202,7 +202,7 @@ export default function BookingsPage() {
         {selectedBooking && (
           <div className="lg:col-span-7 space-y-5">
             {/* Main Detail Card */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-8">
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">{selectedBooking.id}</p>

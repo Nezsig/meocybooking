@@ -130,7 +130,7 @@ export default function SettingsPage() {
         {/* Languages & Rules */}
         <div className="space-y-5">
           {/* Languages */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <h3 className="text-lg font-semibold text-black mb-4">Languages</h3>
             <p className="text-sm text-gray-600 mb-4">Content coverage across the public site</p>
 
@@ -157,7 +157,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Booking Rules */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
             <h3 className="text-lg font-semibold text-black mb-4">Booking Rules</h3>
 
             <div className="space-y-4 text-sm">
@@ -201,7 +201,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Security Section */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8">
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
         <h2 className="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <Lock className="w-5 h-5" />
           Security

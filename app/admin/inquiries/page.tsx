@@ -147,7 +147,7 @@ export default function InquiriesPage() {
         {/* Detail */}
         {selectedInquiry && (
           <div className="lg:col-span-3 space-y-5">
-            <div className="bg-white border border-gray-200 rounded-2xl p-8">
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="flex items-start justify-between gap-4 mb-6">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">{selectedInquiry.id}</p>
