@@ -1,4 +1,6 @@
 import BookingFormAppleStyle from './components/BookingFormAppleStyle';
+import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 
 export const metadata = {
   title: 'MEOCY — Photography Studio, Milan',
@@ -85,8 +87,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* FAQ */}
+      <FAQ />
+
       {/* Booking Form */}
-      <section id="booking" className="py-20">
+      <section id="booking" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Book Your Shoot</h2>
           <BookingFormAppleStyle />
