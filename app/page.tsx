@@ -2,6 +2,7 @@ import BookingFormAppleStyle from './components/BookingFormAppleStyle';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Navigation from './components/Navigation';
+import PricingCalculator from './components/Calculator';
 
 export const metadata = {
   title: 'MEOCY — Photography Studio, Milan',
@@ -76,6 +77,9 @@ export default function Home() {
 
       {/* Testimonials */}
       <Testimonials />
+
+      {/* Price Calculator */}
+      <PricingCalculator />
 
       {/* FAQ */}
       <FAQ />
