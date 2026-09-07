@@ -1,6 +1,7 @@
 import BookingFormAppleStyle from './components/BookingFormAppleStyle';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+import Navigation from './components/Navigation';
 
 export const metadata = {
   title: 'MEOCY — Photography Studio, Milan',
@@ -11,21 +12,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
-              <span className="text-white text-sm font-bold">M</span>
-            </div>
-            <span className="font-semibold text-gray-900">MEOCY Studio</span>
-          </div>
-          <div className="hidden md:flex gap-8 text-sm text-gray-600">
-            <a href="#about" className="hover:text-gray-900">About</a>
-            <a href="#packages" className="hover:text-gray-900">Packages</a>
-            <a href="#booking" className="hover:text-gray-900">Booking</a>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero */}
       <section className="bg-gray-50 py-20">
